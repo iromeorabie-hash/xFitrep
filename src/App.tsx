@@ -825,7 +825,7 @@ export default function App() {
       )}
 
       {/* MAIN VIEW CONTROLLER GRID CONTAINER */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-8 relative z-10">
         
         {/* VIEW ROUTING CONTROLLER */}
         {(() => {
@@ -1108,7 +1108,7 @@ export default function App() {
             case "admin-login":
               return (
                 <div className="max-w-md mx-auto my-8 animate-in fade-in duration-300" dir={isRtl ? "rtl" : "ltr"}>
-                  <div className="bg-zinc-900 border border-purple-900/40 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                  <div className="bg-zinc-900/90 backdrop-blur-md border border-purple-900/40 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
                     {/* Admin corner glow */}
                     <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl" />
 

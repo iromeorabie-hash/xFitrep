@@ -93,8 +93,10 @@ export default function VideoModal({ video, onClose, lang }: VideoModalProps) {
               src={video.url}
               controls
               autoPlay
+              playsInline
               className="absolute inset-0 w-full h-full"
               poster={video.thumbnail}
+              onError={() => console.warn("Video element load error handled gracefully")}
             >
               {lang === "en" 
                 ? "Your browser does not support the video tag." 

@@ -50,7 +50,6 @@ export default function Mp4Thumbnail({ videoUrl, className = "" }: Mp4ThumbnailP
     let isMounted = true;
     const video = document.createElement("video");
     
-    video.crossOrigin = "anonymous";
     video.preload = "metadata";
     video.muted = true;
     video.playsInline = true;

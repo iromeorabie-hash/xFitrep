@@ -70,7 +70,7 @@ export default function AuthView({ t, lang, onLogin, onRegister, initialMode = "
 
   return (
     <div className="max-w-md mx-auto my-8 animate-in fade-in duration-300" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="bg-zinc-900 border border-zinc-800/80 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+      <div className="bg-zinc-900/90 backdrop-blur-md border border-zinc-800/80 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
         {/* Decorative corner glow */}
         <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl" />
         

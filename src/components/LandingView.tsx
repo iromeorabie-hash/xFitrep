@@ -21,7 +21,7 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
     <div className="space-y-16 animate-in fade-in duration-300" dir={isRtl ? "rtl" : "ltr"}>
       
       {/* 1. HERO BANNER SECTION */}
-      <section className="relative rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800/80 px-6 py-16 md:py-24 text-center">
+      <section className="relative rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800/80 px-6 py-10 md:py-12 text-center shadow-2xl">
         {/* Decorative subtle ambient blurs */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-10 right-10 w-[200px] h-[200px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -32,23 +32,20 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
             {t.brandSub}
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-none">
-            {t.heroTitle.split(" ").map((word, idx) => {
-              // Highlight "At Home" / "من المنزل" or just provide nice emphasis
-              const isHighlight = idx > 3 || (isRtl && word.includes("المنزل"));
-              return (
-                <span key={idx} className={isHighlight ? "text-emerald-500" : ""}>
-                  {word}{" "}
-                </span>
-              );
-            })}
-          </h1>
-          
-          <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto font-sans">
-            {t.heroSub}
-          </p>
+          {/* Hero Video Container */}
+          <div className="w-full max-w-2xl mx-auto rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl bg-zinc-950 aspect-video relative">
+            <video
+              src="https://www.image2url.com/r2/default/videos/1785245618761-e563642c-5ed7-4b69-ae31-79ee8674ef7a.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             {isLoggedIn ? (
               <button
                 id="hero-browse-cta"
@@ -92,7 +89,7 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
 
       {/* 2. STATS COUNTERS */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-zinc-900 border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5">
+        <div className="bg-zinc-900/80 backdrop-blur-md border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5 shadow-lg">
           <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
             <Users className="w-6 h-6" />
           </div>
@@ -106,7 +103,7 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5">
+        <div className="bg-zinc-900/80 backdrop-blur-md border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5 shadow-lg">
           <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
             <Play className="w-6 h-6 fill-current" />
           </div>
@@ -120,7 +117,7 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5">
+        <div className="bg-zinc-900/80 backdrop-blur-md border border-zinc-800/60 rounded-2xl p-6 flex items-center gap-5 shadow-lg">
           <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
             <Dumbbell className="w-6 h-6" />
           </div>
@@ -136,7 +133,7 @@ export default function LandingView({ t, lang, onNavigate, isLoggedIn, isAdmin, 
       </section>
 
       {/* 3. ABOUT SECTION */}
-      <section className="bg-zinc-900/40 border border-zinc-800/40 rounded-3xl p-8 md:p-12 space-y-8">
+      <section className="bg-zinc-900/80 backdrop-blur-md border border-zinc-800/60 rounded-3xl p-8 md:p-12 space-y-8 shadow-xl">
         <div className="max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
             {t.aboutTitle}
