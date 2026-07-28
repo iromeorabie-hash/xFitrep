@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user profile including subscription state and favorites.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique user ID (e.g., custom prefix or phone-based)." },
+        "name": { "type": "string", "description": "Full name of the user." },
+        "phone": { "type": "string", "description": "Phone number used for login." },
+        "password": { "type": "string", "description": "Password string (plain text for simplicity in this system)." },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "description": "Approval status of the user's account." },
+        "subscription": {
+          "type": "object",
+          "description": "The current subscription details.",
+          "properties": {
+            "plan": { "type": "string", "enum": ["None", "Basic", "Premium", "Elite", "Custom"] },
+            "activatedAt": { "type": "string", "format": "date-time" },
+            "expiresAt": { "type": "string", "format": "date-time" },
+            "durationDays": { "type": "integer" }
+          }
+        },
+        "favorites": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of favorite video IDs."
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "phone", "password", "status", "subscription", "favorites", "createdAt"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "A workout category containing multiple videos.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique category ID (e.g. cat-chest)." },
+        "name": { "type": "string", "description": "The name of the category." },
+        "description": { "type": "string", "description": "A description of what the exercises target." }
+      },
+      "required": ["id", "name", "description"]
+    },
+    "Video": {
+      "title": "Video",
+      "description": "A training/coaching video.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique video ID." },
+        "title": { "type": "string", "description": "The video title." },
+        "description": { "type": "string", "description": "The video description." },
+        "categoryId": { "type": "string", "description": "The parent category ID." },
+        "url": { "type": "string", "description": "The video MP4 URL." },
+        "duration": { "type": "integer", "description": "The video duration in minutes." },
+        "views": { "type": "integer", "description": "Number of views." },
+        "trainer": { "type": "string", "description": "Name of the trainer/coach." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "description", "categoryId", "url", "duration", "views", "trainer", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles and subscription state"
+    },
+    "categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "Workout categories"
+    },
+    "videos/{videoId}": {
+      "schema": { "$ref": "#/entities/Video" },
+      "description": "Workout videos"
+    }
+  }
+}

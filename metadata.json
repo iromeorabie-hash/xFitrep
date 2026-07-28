@@ -1,0 +1,8 @@
+{
+  "name": "x Fitrep",
+  "description": "Master your fitness journey with clear, easy-to-follow workout video tutorials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
