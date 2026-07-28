@@ -181,9 +181,27 @@ export default function CustomerProfileView({ user, onUpdateUser, lang, isAdminV
         })
       });
 
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to generate AI diet plan.");
+      let data: any = null;
+      const contentType = res.headers.get("content-type") || "";
+
+      if (contentType.includes("application/json")) {
+        try {
+          data = await res.json();
+        } catch {
+          throw new Error(lang === "en" ? "Server response parsing error." : "خطأ في تحليل استجابة الخادم.");
+        }
+      } else {
+        const rawText = await res.text().catch(() => "");
+        console.error("Non-JSON API response received:", rawText);
+        throw new Error(
+          lang === "en" 
+            ? "Server returned an unexpected non-JSON response. Please try again." 
+            : "تعذر الحصول على استجابة منظمة من الخادم. يرجى المحاولة مرة أخرى."
+        );
+      }
+
+      if (!res.ok || !data || !data.success) {
+        throw new Error(data?.error || (lang === "en" ? "Failed to generate AI diet plan." : "فشل إنشاء النظام الغذائي."));
       }
 
       setDietPlan(data.dietPlan);
